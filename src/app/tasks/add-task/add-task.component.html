@@ -1,9 +1,9 @@
 <div>
     <form #newTaskForm="ngForm" (ngSubmit)="addTask(newTaskForm.value)" autocomplete="off">
-        <div >
-            <input (ngModel)="taskName" name="taskName" required id="taskName" type="text"
-            placeholder="Enter a task...">
-        </div>
-        <button type="submit" [disabled]="newTaskForm.invalid">Add Task</button>
+        <mat-form-field  >
+            <input matInput (ngModel)="taskName" name="taskName" required id="taskName" type="text"
+            placeholder="enter a new task...">
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" [disabled]="newTaskForm.invalid">Add Task</button>
     </form>
 </div>

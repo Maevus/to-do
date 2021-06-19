@@ -1,10 +1,7 @@
 <div>
-    <form id="searchForm" (ngSubmit)="searchTasks(searchTerm)">
-        <div>
-            <input [(ngModel)]="searchTerm" name="searchTerm" type="text" placeholder="Search Tasks...">
-        </div>
-        <button>
-            Search
-        </button>
-    </form>
+    <mat-button-toggle-group name="filterBy">
+        <mat-button-toggle value="all">All</mat-button-toggle>
+        <mat-button-toggle value="completed">Completed</mat-button-toggle>
+        <mat-button-toggle value="to-do">To Do</mat-button-toggle>
+    </mat-button-toggle-group>
 </div>

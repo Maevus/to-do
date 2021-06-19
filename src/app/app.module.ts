@@ -9,10 +9,17 @@ import { TaskService } from './tasks/task.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+
+
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { FilterTaskComponent } from './tasks/filter-task/filter-task.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { SearchTaskComponent } from './tasks/search-task/search-task.component';
 
 @NgModule({
   imports: [
@@ -22,14 +29,18 @@ import { FormsModule } from '@angular/forms';
     //Material
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     AppComponent,
     TaskListComponent,
     AddTaskComponent,
     FilterTaskComponent,
-    HomeComponent
+    HomeComponent,
+    SearchTaskComponent
   ],
   providers: [
     TaskService

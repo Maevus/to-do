@@ -6,13 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-task.component.css'],
 })
 export class FilterTaskComponent implements OnInit {
-  searchTerm: string;
-  
+
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  searchTasks(searchTerm) {
-    console.log(searchTerm);
-  }
+
 }
