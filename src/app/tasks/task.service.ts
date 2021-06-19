@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Task as ITask } from '../models/task';
+import { ITask as ITask } from '../models/task';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
+  private tasks: ITask[] = TASKS;
+
   constructor() {}
 
   addTask(task: ITask): void {}
 
-  deleteTask(): ITask[] {
-    return null;
+  deleteTask(value: ITask): Observable<ITask[]> {
+    this.tasks = this.tasks.filter(task => {
+      return task.id !== value.id 
+    });
+
+    return of(this.tasks).pipe(delay(100));
   }
 
-  getTasks(): ITask[] {
-    return TASKS;
+  getTasks(): Observable<ITask[]> {
+    return of(TASKS).pipe(delay(100));
   }
+  
 }
 
 const TASKS: ITask[] = [
