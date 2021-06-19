@@ -11,7 +11,9 @@ export class TaskService {
 
   constructor() {}
 
-  addTask(task: ITask): void {}
+  addTask(task: ITask): void {
+    this.tasks.push(task);
+  }
 
   deleteTask(value: ITask): Observable<ITask[]> {
     this.tasks = this.tasks.filter(task => {
@@ -24,7 +26,16 @@ export class TaskService {
   getTasks(): Observable<ITask[]> {
     return of(TASKS).pipe(delay(100));
   }
-  
+
+  updateTask(value: ITask, status: string): Observable<ITask[]> {
+    this.tasks.filter(task => {
+      if(task.id === value.id) {
+        task.status = status;
+      }
+    })
+    return of(this.tasks).pipe(delay(100));
+  }
+
 }
 
 const TASKS: ITask[] = [

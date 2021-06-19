@@ -20,17 +20,22 @@ export class TaskListComponent implements OnInit {
   }
 
   completeTask(task): void {
-    task.status = TASK_STATUS_COMPLETED;
+    this.updateTask(task, TASK_STATUS_COMPLETED);
   }
 
   uncompleteTask(task): void {
-    task.status = TASK_STATUS_TO_DO;
+    this.updateTask(task, TASK_STATUS_TO_DO);
   }
 
   deleteTask(task): void {
     this.taskService.deleteTask(task).subscribe((tasks) => {
       this.tasks = tasks;
-      console.log(this.tasks);
     });
+  }
+
+  private updateTask(task: ITask, status: string): void {
+    this.taskService
+      .updateTask(task, status)
+      .subscribe((tasks) => (this.tasks = tasks));
   }
 }
