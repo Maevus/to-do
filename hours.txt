@@ -1,4 +1,4 @@
-Hours; Description
+Hour; Time; Description
 
-1; Project planning. Learn fundamentals of NgRx.
-2; Pull together basic functionality of app.
+1; 11.30-12.30; Project planning. Learn fundamentals of NgRx.
+2; 12.30-13.30; Pull together basic functionality of app.

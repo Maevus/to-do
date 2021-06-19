@@ -1,0 +1,11 @@
+<div *ngFor="let task of tasks">
+    <mat-card>
+        <span>{{task.name}}</span>
+        <span>{{task.status}}</span>
+        <span *ngIf="task.status==='complete'">
+            <button mat-mini-fab><mat-icon>edit</mat-icon></button> 
+            <button mat-mini-fab><mat-icon>undo</mat-icon></button> 
+        </span>
+        <button *ngIf="task.status==='to do'" mat-mini-fab><mat-icon>check</mat-icon></button> 
+    </mat-card>
+</div>
