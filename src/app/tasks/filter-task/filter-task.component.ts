@@ -3,13 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-filter-task',
   templateUrl: './filter-task.component.html',
-  styleUrls: ['./filter-task.component.css']
+  styleUrls: ['./filter-task.component.css'],
 })
 export class FilterTaskComponent implements OnInit {
+  searchTerm: string;
+  
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  searchTasks(searchTerm) {
+    console.log(searchTerm);
   }
-
 }

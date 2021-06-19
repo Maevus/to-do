@@ -2,5 +2,6 @@ Hour; Description
 
 1; Project planning. Learn fundamentals of NgRx.
 2; Pull together basic functionality of app. Familiarise with angular material components. List component functionality and basic styling.
-3, 4.5; Fleshing out the task.service implentation, making is psuedo async. Added grid to the mat-cards to tidy them up.
-4.5,.. ; Add add task component + filter component. Add a home component. Try to think of a nice architecture!   
+3-4.5; Fleshing out the task.service implentation, making is psuedo async. Added grid to the mat-cards to tidy them up.
+4.5-5 ; Add add task component + filter component. Add a home component. Try to think of a nice architecture! Implement add task functionality.
+5; Implement filter functionality. Beautify filter and home components.  

@@ -1,1 +1,10 @@
-<p>filter-task works!</p>
+<div>
+    <form id="searchForm" (ngSubmit)="searchTasks(searchTerm)">
+        <div>
+            <input [(ngModel)]="searchTerm" name="searchTerm" type="text" placeholder="Search Tasks...">
+        </div>
+        <button>
+            Search
+        </button>
+    </form>
+</div>
