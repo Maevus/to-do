@@ -1,12 +1,14 @@
 <div class="task-list-container">
     <div *ngFor="let task of tasks">
         <mat-card>
-            <span [ngClass]="{'strikethrough' : task.status==='complete'}">{{task.name}}</span>
-            <span *ngIf="task.status==='complete'">
+            <span class="task-name" [ngClass]="{'strikethrough' : task.status==='complete'}">{{task.name}}</span>
+            <span class="task-buttons" *ngIf="task.status==='complete'">
                 <button mat-mini-fab (click)="uncompleteTask(task)"><mat-icon>undo</mat-icon></button> 
                 <button mat-mini-fab (click)="deleteTask(task)"><mat-icon>delete</mat-icon></button> 
             </span>
-            <button *ngIf="task.status==='to do'" mat-mini-fab (click)="completeTask(task)"><mat-icon>check</mat-icon></button> 
+            <span *ngIf="task.status==='to do'" class="task-buttons">
+                <button  mat-mini-fab (click)="completeTask(task)"><mat-icon>check</mat-icon></button> 
+            </span>
         </mat-card>
     </div>
 </div>

@@ -7,8 +7,20 @@
   text-decoration: line-through;
 }
 
+.task-name {
+    align-self: center;
+    justify-self: baseline;
+}
+
+.task-buttons {
+    align-self: center;
+    justify-self: end;
+}
+
 mat-card {
   margin: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 span {
