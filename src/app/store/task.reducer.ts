@@ -53,13 +53,26 @@ const taskReducer = createReducer<ITask[]>(
     ])),
 
     on(
-      TaskServiceActions.filterTask,
-      (state, action) => (state.filter(element =>  
-          element.status === action.status
-      ))
+      TaskServiceActions.completedTasks,
+      (state) => state.filter(element =>  
+          element.status === TASK_STATUS_COMPLETED
+      )
     ),
 
-  );
+    on(
+      TaskServiceActions.toDoTasks,
+      (state) => state.filter(element =>  
+          element.status === TASK_STATUS_TO_DO
+      )
+    ),
+
+    on(
+      TaskServiceActions.allTasks,
+      (state) => 
+        ([...state])
+    )
+)
+    
 
   export function reducer(state: any, action: any) {
     return taskReducer(state, action);

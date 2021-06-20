@@ -15,9 +15,20 @@ export class FilterTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   filter(formValue) {
-    let status = this.getStatus(formValue);
-    console.log(status)
-    this.store.dispatch({type: '[Filter Task Page] Filter Tasks', status: status })
+    // let status = this.getStatus(formValue);
+     console.log(formValue)
+    // this.store.dispatch({type: '[Filter Task Page] Filter Tasks', status: status })
+    switch (formValue) {
+      case "completed": {
+        this.store.dispatch({type: '[Filter Task Page] Show Completed Tasks'})
+      }
+      case "to-do" : {
+        this.store.dispatch({type: '[Filter Task Page] Show To Do Tasks'})
+      }
+      default: {
+        this.store.dispatch({type: '[Filter Page] Show All Tasks'})
+      }
+    } 
   }
 
   private getStatus(formValue: string): string {
