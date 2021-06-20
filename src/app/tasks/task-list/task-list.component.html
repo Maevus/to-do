@@ -1,5 +1,8 @@
-<div *ngFor="let task of tasks">
-    <mat-card>
+<div *ngFor="let task of tasks$ | async">
+    <li> {{task.name}}
+
+    </li>
+    <!-- <mat-card>
         <span class="task-name" [ngClass]="{'strikethrough' : task.status==='complete'}">{{task.name}}</span>
         <span class="task-buttons" *ngIf="task.status==='complete'">
             <button mat-mini-fab (click)="uncompleteTask(task)">
@@ -14,5 +17,5 @@
                 <mat-icon>check</mat-icon>
             </button>
         </span>
-    </mat-card>
+    </mat-card> -->
 </div>

@@ -13,19 +13,24 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
-
-
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
 import { FilterTaskComponent } from './tasks/filter-task/filter-task.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { SearchTaskComponent } from './tasks/search-task/search-task.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { TaskEffects } from './effects/task.effect'
+import * as fromTask from './reducers/task.reducer';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    //NgRx
+    StoreModule.forRoot({tasks: fromTask.reducer}),
+    EffectsModule.forRoot([TaskEffects]),
     //Material
     MatCardModule,
     MatButtonModule,
@@ -40,7 +45,8 @@ import { SearchTaskComponent } from './tasks/search-task/search-task.component';
     AddTaskComponent,
     FilterTaskComponent,
     HomeComponent,
-    SearchTaskComponent
+    SearchTaskComponent,
+
   ],
   providers: [
     TaskService

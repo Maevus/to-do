@@ -13,11 +13,11 @@ export class TaskService {
 
   constructor() {}
 
-  getTasks(): Observable<ITask[]> {
+  getAll(): Observable<ITask[]> {
     return of(TASKS).pipe(delay(100));
   }
 
-  addTask(taskName: string): void {
+  add(taskName: string): void {
     let task = new Task();
     task.name = taskName;
     task.status = TASK_STATUS_TO_DO;
@@ -26,19 +26,16 @@ export class TaskService {
     console.log(task);
   }
 
-  getNextId(): number {
-    return TASKS.length + 1;
-  }
-
-  deleteTask(value: ITask): Observable<ITask[]> {
+  delete(value: ITask): Observable<ITask[]> {
     this.tasks = this.tasks.filter((task) => {
       return task.id !== value.id;
     });
 
     return of(this.tasks).pipe(delay(100));
+  
   }
-
-  updateTask(value: ITask, status: string): Observable<ITask[]> {
+  
+  update(value: ITask, status: string): Observable<ITask[]> {
     this.tasks.filter((task) => {
       if (task.id === value.id) {
         task.status = status;
@@ -46,7 +43,13 @@ export class TaskService {
     });
     return of(this.tasks).pipe(delay(100));
   }
+
+  private getNextId(): number {
+    return TASKS.length + 1;
+  }
+
 }
+
 
 const TASKS: ITask[] = [
   {

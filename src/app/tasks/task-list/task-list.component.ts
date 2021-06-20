@@ -2,21 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
 })
-export class TaskListComponent implements OnInit {
-  tasks: ITask[];
 
-  constructor(private taskService: TaskService) {}
+export class TaskListComponent implements OnInit {
+  // tasks: ITask[];
+  tasks$: Observable<ITask[]> = this.store.select(state => state.tasks);
+
+  constructor(
+    private store: Store<{tasks: ITask[]}>) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => {
-      this.tasks = tasks;
-    });
+    this.store.dispatch({type: '[Task List Page] Load Tasks'});
+    console.log(this.tasks$)
   }
 
   completeTask(task): void {
@@ -28,14 +32,14 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(task): void {
-    this.taskService.deleteTask(task).subscribe((tasks) => {
-      this.tasks = tasks;
-    });
+    // this.taskService.delete(task).subscribe((tasks) => {
+    //   this.tasks = tasks;
+    // });
   }
 
   private updateTask(task: ITask, status: string): void {
-    this.taskService
-      .updateTask(task, status)
-      .subscribe((tasks) => (this.tasks = tasks));
+    // this.taskService
+    //   .update(task, status)
+    //   .subscribe((tasks) => (this.tasks = tasks));
   }
 }
