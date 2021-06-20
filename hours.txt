@@ -6,5 +6,5 @@ Hour; Description
 4.5-5 ; Add add task component + filter component. Add a home component. Try to think of a nice architecture! Implement add task functionality.
 5-6; Implement filter functionality. Beautify filter and home components.  Added NgRx store and friends. Updated Angular from 11 to 12 to match latest version of store.
 7-9.5; Add redux pattern to app. Review official documentation to Implement latest version of pattern. Got loadTasks working and have a fair idea now how it works.
-9.5; Reviewed strange bug where *ngFor directive started rendering content twice in this case for incoming task items. Tried with a simple list of primitives and it works as intended. 
+9.5-10; Reviewed strange bug where *ngFor directive started rendering content twice in this case for incoming task items. Tried with a simple list of primitives and it works as intended. 
     Eureka moment,just realised I was hardcoding tasks twice. /facepalm.

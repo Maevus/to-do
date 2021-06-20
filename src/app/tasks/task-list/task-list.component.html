@@ -1,4 +1,4 @@
-<div *ngFor="let task of tasks">
+<div *ngFor="let task of tasks$ | async">
     <mat-card>
         <span class="task-name" [ngClass]="{'strikethrough' : task.status==='complete'}">{{task.name}}</span>
         <span class="task-buttons" *ngIf="task.status==='complete'">
