@@ -17,6 +17,6 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   addTask(formValue): void {
-    this.store.dispatch({type: '[Task List Page] AddTask', name: formValue.taskName});
+    this.store.dispatch({type: '[Task List Page] Add Task', name: formValue.taskName});
   }
 }

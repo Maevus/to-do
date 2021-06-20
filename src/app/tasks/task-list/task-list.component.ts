@@ -21,23 +21,19 @@ export class TaskListComponent implements OnInit {
   }
 
   completeTask(task): void {
-    this.updateTask(task, TASK_STATUS_COMPLETED);
+    this.updateTask(task.id, TASK_STATUS_COMPLETED);
   }
 
   uncompleteTask(task): void {
-    this.updateTask(task, TASK_STATUS_TO_DO);
+    this.updateTask(task.id, TASK_STATUS_TO_DO);
   }
 
   deleteTask(task): void {
-    console.log("clicked")
-    this.store.dispatch({type: '[Task List Page] DeleteTask', task: task})
+    this.store.dispatch({type: '[Task List Page] Delete Task', task: task})
   }
   
-  private updateTask(task: ITask, status: string): void {
-    // this.taskService
-    //   .update(task, status)
-    //   .subscribe((tasks) => (this.tasks = tasks));
+  private updateTask(id: number, status: string): void {
+    console.log("update")
+    this.store.dispatch({type: '[Task List Page] Update Task', id: id, status: status})
   }
-
-
 }

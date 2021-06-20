@@ -5,7 +5,6 @@ import { map, mergeMap, catchError, exhaustMap } from 'rxjs/operators';
 import { TaskService } from './../tasks/task.service';
 import * as taskActions from './../actions/tasks.actions';
 
-
 @Injectable()
 export class TaskEffects {
   loadTasks$ = createEffect(() =>
@@ -26,7 +25,7 @@ export class TaskEffects {
   deleteTask$ = createEffect(() =>
     this.actions$.pipe(
       ofType(taskActions.deleteTask),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.taskService.delete(action.task).pipe(
           map((tasks) => ({
             type: '[Tasks API] Delete Task Success',
@@ -39,19 +38,34 @@ export class TaskEffects {
   );
 
   addTask$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(taskActions.addTask),
-    mergeMap(action =>
-      this.taskService.add(action.name).pipe(
-        map((tasks) => ({
-          type: '[Tasks API] Add Task Success',
-          payload: tasks,
-        })),
-        catchError(() => EMPTY)
+    this.actions$.pipe(
+      ofType(taskActions.addTask),
+      mergeMap((action) =>
+        this.taskService.add(action.name).pipe(
+          map((tasks) => ({
+            type: '[Tasks API] Add Task Success',
+            payload: tasks,
+          })),
+          catchError(() => EMPTY)
+        )
       )
     )
-  )
-);
+  );
+
+  updateTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(taskActions.updateTask),
+      mergeMap((action) =>
+        this.taskService.update(action.id, action.status).pipe(
+          map((tasks) => ({
+            type: '[Tasks API] Update Task Success',
+            payload: tasks,
+          })),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
 
   constructor(private actions$: Actions, private taskService: TaskService) {}
 }

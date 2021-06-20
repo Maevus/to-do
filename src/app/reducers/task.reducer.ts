@@ -2,10 +2,6 @@ import { ITask } from '../models/task';
 import { createReducer, on } from '@ngrx/store';
 import * as TaskServiceActions from './../actions/tasks.actions';
 
-// export interface IState {
-//     tasks: ITask[]
-// }
-
 const initialState: ITask[] = [];
 
 const taskReducer = createReducer<ITask[]>(
@@ -43,15 +39,19 @@ const taskReducer = createReducer<ITask[]>(
     on(TaskServiceActions.addTaskSuccess, (state, action) => ([
       ...action.payload,
     ])),
-  );
 
+    on(
+      TaskServiceActions.updateTask,
+      (state) => ([
+        ...state
+      ])
+    ),
+
+    on(TaskServiceActions.updateTaskSuccess, (state, action) => ([
+      ...action.payload,
+    ])),
+  );
 
   export function reducer(state: any, action: any) {
     return taskReducer(state, action);
   }
-
-
-// export function cloneDeep(val) { 
-//    return JSON.parse(JSON.stringify(val));
-// }
-

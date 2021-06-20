@@ -19,11 +19,8 @@ export class TaskService {
 
   add(name: string): Observable<ITask[]> {
     console.log('taskservice::add ' + name);
-  
-    let task = new Task();
-    task.id = this.getNextId();
-    task.name = name;
-    task.status = TASK_STATUS_TO_DO;
+
+    let task: Task = this.makeTask(name);
 
     this.tasks = Object.assign([], this.tasks);
     this.tasks.push(task);
@@ -33,6 +30,7 @@ export class TaskService {
 
   delete(value: ITask): Observable<ITask[]> {
     console.log('taskservice::delete ' + value?.id + ' ' + value.name);
+
     this.tasks = this.tasks.filter((task) => {
       return task.id !== value.id;
     });
@@ -40,21 +38,38 @@ export class TaskService {
     return of(this.tasks).pipe(delay(100));
   }
 
-  update(value: ITask, status: string): Observable<ITask[]> {
+  update(id: number, status: string): Observable<ITask[]> {
+    console.log('taskservice::update task ' + id + ' to ' + status);
+
+    this.tasks = this.clone(this.tasks);
     this.tasks.filter((task) => {
-      if (task.id === value.id) {
+      if (task.id === id) {
         task.status = status;
       }
     });
+
     return of(this.tasks).pipe(delay(100));
+  }
+
+
+
+  private clone(arr) {
+    return JSON.parse(JSON.stringify(arr));
   }
 
   private getNextId(): number {
     return TASKS.length + 1;
   }
 
+  private makeTask(name: string): Task {
+    let task = new Task();
+    task.id = this.getNextId();
+    task.name = name;
+    task.status = TASK_STATUS_TO_DO;
+    return task;
+    
+  }
 }
-
 
 const TASKS: ITask[] = [
   {
