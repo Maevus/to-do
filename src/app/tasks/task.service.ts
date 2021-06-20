@@ -9,32 +9,37 @@ import { TASK_STATUS_TO_DO } from '../const';
   providedIn: 'root',
 })
 export class TaskService {
-  private tasks: ITask[] = TASKS;
+  private tasks = TASKS;
 
   constructor() {}
 
   getAll(): Observable<ITask[]> {
-    return of(TASKS).pipe(delay(100));
+    return of(this.tasks).pipe(delay(100));
   }
 
-  add(taskName: string): void {
+  add(name: string): Observable<ITask[]> {
+    console.log('taskservice::add ' + name);
+  
     let task = new Task();
-    task.name = taskName;
-    task.status = TASK_STATUS_TO_DO;
     task.id = this.getNextId();
+    task.name = name;
+    task.status = TASK_STATUS_TO_DO;
+
+    this.tasks = Object.assign([], this.tasks);
     this.tasks.push(task);
-    console.log(task);
+
+    return of(this.tasks);
   }
 
   delete(value: ITask): Observable<ITask[]> {
+    console.log('taskservice::delete ' + value?.id + ' ' + value.name);
     this.tasks = this.tasks.filter((task) => {
       return task.id !== value.id;
     });
-
+    console.log(this.tasks);
     return of(this.tasks).pipe(delay(100));
-  
   }
-  
+
   update(value: ITask, status: string): Observable<ITask[]> {
     this.tasks.filter((task) => {
       if (task.id === value.id) {

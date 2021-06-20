@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
+import { Task } from './../../models/task';
+import { TASK_STATUS_TO_DO } from 'src/app/const';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-task',
@@ -9,11 +12,11 @@ import { TaskService } from '../task.service';
 export class AddTaskComponent implements OnInit {
   taskName
 
-  constructor(private taskService: TaskService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
   addTask(formValue): void {
-    this.taskService.add(formValue.taskName);
+    this.store.dispatch({type: '[Task List Page] AddTask', name: formValue.taskName});
   }
 }

@@ -1,5 +1,5 @@
 import { ITask } from '../models/task';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import * as TaskServiceActions from './../actions/tasks.actions';
 
 // export interface IState {
@@ -20,8 +20,32 @@ const taskReducer = createReducer<ITask[]>(
     on(TaskServiceActions.loadTasksSuccess, (state, action) => ([
       ...state,
       ...action.payload,
-    ]))
+    ])),
+
+    on(
+      TaskServiceActions.deleteTask,
+      (state) => ([
+        ...state
+      ])
+    ),
+
+    on(TaskServiceActions.deleteTaskSuccess, (state, action) => ([
+      ...action.payload,
+    ])),
+
+    on(
+      TaskServiceActions.addTask,
+      (state) => ([
+        ...state
+      ])
+    ),
+
+    on(TaskServiceActions.addTaskSuccess, (state, action) => ([
+      ...action.payload,
+    ])),
   );
+
+
   export function reducer(state: any, action: any) {
     return taskReducer(state, action);
   }

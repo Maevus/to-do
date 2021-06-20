@@ -3,8 +3,8 @@ import { TaskService } from '../task.service';
 import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, Subscription } from 'rxjs';
-import {  takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import  * as taskActions from '../../actions/tasks.actions' 
 
 @Component({
   selector: 'app-task-list',
@@ -14,13 +14,10 @@ import {  takeUntil } from 'rxjs/operators';
 export class TaskListComponent implements OnInit {
   tasks$: Observable<ITask[]> =  this.store.select((state) => state.tasks)
 
-  constructor(private store: Store<{ tasks: ITask[] }>) {
- 
-  }
+  constructor(private store: Store<{ tasks: ITask[] }>) {}
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' });
-    console.log(this.tasks$);
   }
 
   completeTask(task): void {
@@ -32,15 +29,15 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(task): void {
-    // this.taskService.delete(task).subscribe((tasks) => {
-    //   this.tasks = tasks;
-    // });
+    console.log("clicked")
+    this.store.dispatch({type: '[Task List Page] DeleteTask', task: task})
   }
-
+  
   private updateTask(task: ITask, status: string): void {
     // this.taskService
     //   .update(task, status)
     //   .subscribe((tasks) => (this.tasks = tasks));
   }
+
 
 }
