@@ -2,29 +2,11 @@ import { ITask } from '../models/task';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as TaskServiceActions from './../actions/tasks.actions';
 
-export const TASKS: ITask[] = [
-    {
-      id: 1,
-      name: 'things to do',
-      status: 'to do',
-    },
-    {
-      id: 2,
-      name: 'more things to do',
-      status: 'complete',
-    },
-    {
-      id: 3,
-      name: 'morer things to do',
-      status: 'to do',
-    },
-  ];
-
 // export interface IState {
 //     tasks: ITask[]
 // }
 
-const initialState: ITask[] = TASKS;
+const initialState: ITask[] = [];
 
 const taskReducer = createReducer<ITask[]>(
     initialState,

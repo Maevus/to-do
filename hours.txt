@@ -1,8 +1,10 @@
 Hour; Description
 
-1; Project planning. Learn fundamentals of NgRx.
+1; Project planning. Review fundamentals of NgRx.
 2; Pull together basic functionality of app. Familiarise with angular material components. List component functionality and basic styling.
 3-4.5; Fleshing out the task.service implentation, making is psuedo async. Added grid to the mat-cards to tidy them up.
 4.5-5 ; Add add task component + filter component. Add a home component. Try to think of a nice architecture! Implement add task functionality.
 5-6; Implement filter functionality. Beautify filter and home components.  Added NgRx store and friends. Updated Angular from 11 to 12 to match latest version of store.
-7; Add redux pattern to app.
+7-9.5; Add redux pattern to app. Review official documentation to Implement latest version of pattern. Got loadTasks working and have a fair idea now how it works.
+9.5; Reviewed strange bug where *ngFor directive started rendering content twice in this case for incoming task items. Tried with a simple list of primitives and it works as intended. 
+    Eureka moment,just realised I was hardcoding tasks twice. /facepalm.
