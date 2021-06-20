@@ -51,8 +51,6 @@ export class TaskService {
     return of(this.tasks).pipe(delay(100));
   }
 
-
-
   private clone(arr) {
     return JSON.parse(JSON.stringify(arr));
   }
@@ -67,7 +65,7 @@ export class TaskService {
     task.name = name;
     task.status = TASK_STATUS_TO_DO;
     return task;
-    
+
   }
 }
 

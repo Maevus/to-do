@@ -4,7 +4,7 @@ import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import  * as taskActions from '../../actions/tasks.actions' 
+import  * as taskActions from '../../store/tasks.actions' 
 
 @Component({
   selector: 'app-task-list',

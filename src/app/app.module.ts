@@ -20,8 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { SearchTaskComponent } from './tasks/search-task/search-task.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { TaskEffects } from './effects/task.effect'
-import * as fromTask from './reducers/task.reducer';
+import { TaskEffects } from './store/task.effect'
+import * as fromTask from './store/task.reducer';
 
 @NgModule({
   imports: [

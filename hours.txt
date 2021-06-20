@@ -10,4 +10,4 @@ Hour; Description
     Eureka moment,just realised I was hardcoding tasks twice. /
 10-11; Move remaining task-list component / task.service interactions to store. Implemented Add and Delete with some further teething problems with passing information via reducers/effects.
 11-12; Another ngrx oddity where my add fuction stopped working because it seems ngrx stores modify object descriptors so my simplistic way of doing things was longer possible (as was mutating original array).
-12-13: Work on update
+12-13: Move update function to store. 

@@ -1,6 +1,6 @@
 import { ITask } from '../models/task';
 import { createReducer, on } from '@ngrx/store';
-import * as TaskServiceActions from './../actions/tasks.actions';
+import * as TaskServiceActions from './tasks.actions';
 
 const initialState: ITask[] = [];
 

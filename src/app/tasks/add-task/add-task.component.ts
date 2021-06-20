@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css'],
 })
+
 export class AddTaskComponent implements OnInit {
   taskName
 
