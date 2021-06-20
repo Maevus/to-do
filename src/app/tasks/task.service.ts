@@ -3,7 +3,7 @@ import { ITask, Task } from '../models/task';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from '../const';
+import { TASK_STATUS_TO_DO } from '../const';
 
 @Injectable({
   providedIn: 'root',
