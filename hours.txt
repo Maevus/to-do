@@ -14,3 +14,4 @@ Hour; Description
 12.25-15: Where is the time going... tried to implement filter using ngrx, and noticed that it doesnt really work as the state is changed, which is not what I want. 
         Looking online it seems like what I need are Selector functions. Thought about doing it the old fashionway with child components / inputs and outputs. 
         That really screws up the nice async task view...
+16 hours! Time's up and getting slices of state with NgRx has defeated me.

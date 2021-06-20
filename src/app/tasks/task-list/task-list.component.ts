@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import  * as taskActions from '../../store/tasks.actions' 
+import * as selectors from './../../store/task.selectors';
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +12,9 @@ import  * as taskActions from '../../store/tasks.actions'
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  tasks$: Observable<ITask[]> =  this.store.select((state) => state.tasks)
+  @Input() searchTerm: string;
+
+  tasks$: Observable<ITask[]> = this.store.select((state) => state.tasks);
 
   constructor(private store: Store<{ tasks: ITask[] }>) {}
 
@@ -29,11 +31,40 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(task): void {
-    this.store.dispatch({type: '[Task List Page] Delete Task', task: task})
+    this.store.dispatch({ type: '[Task List Page] Delete Task', task: task });
   }
-  
+
   private updateTask(id: number, status: string): void {
-    console.log("update")
-    this.store.dispatch({type: '[Task List Page] Update Task', id: id, status: status})
+    console.log('update');
+    this.store.dispatch({
+      type: '[Task List Page] Update Task',
+      id: id,
+      status: status,
+    });
   }
+
+  // filter(filterBy) {
+  //   let status = this.getStatus(filterBy) 
+  //   console.log(status)
+
+  // }
+
+
+  // search(searchTerm) {
+  //   // call selector to filter   tasks$
+  // }
+
+  // private getStatus(formValue: string): string {
+  //   switch (formValue) {
+  //     case 'completed': {
+  //       return TASK_STATUS_COMPLETED;
+  //     }
+  //     case 'to-do': {
+  //       return TASK_STATUS_TO_DO;
+  //     }
+  //     default: {
+  //       return null;
+  //     }
+  //   }
+  // }
 }
