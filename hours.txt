@@ -15,8 +15,3 @@ Hour; Description
         Looking online it seems like what I need are Selector functions. Thought about doing it the old fashionway with child components / inputs and outputs. 
         That really screws up the nice async task view...
 16 hours! Time's up and getting slices of state with NgRx has defeated me.
-
-Conclusion 
-A very good learning experience, especially the second half of the project; i.e. migrating to NgRx.
-Still I found working with NgRx quite cumbersome as even though it's conceptually a simple idea, the ins and outs of the syntax and design take a bit of getting used to.
-All in all a good time :) 
