@@ -12,3 +12,6 @@ export const deleteTaskSuccess = createAction('[Tasks API] Delete Task Success',
 
 export const updateTask = createAction('[Task List Page] Update Task', props<{id: number, status: string}>());
 export const updateTaskSuccess = createAction('[Tasks API] Update Task Success', props<{payload: ITask[]}>());
+
+export const filterTask = createAction('[Filter Task Page] Filter Tasks', props<{status: string}>());
+export const searchTask = createAction('[Search Task Page] Search Tasks', props<{search: string}>());

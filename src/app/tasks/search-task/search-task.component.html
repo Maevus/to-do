@@ -1,5 +1,5 @@
 <div>
-    <form id="searchForm" (ngSubmit)="searchTasks(searchTerm)">
+    <form id="searchForm" (ngSubmit)="search(searchTerm)">
         <mat-form-field >
             <input matInput [(ngModel)]="searchTerm" name="searchTerm" type="text" placeholder="search your tasks...">
         </mat-form-field>
