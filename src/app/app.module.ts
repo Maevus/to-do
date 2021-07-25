@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchTaskComponent } from './tasks/search-task/search-task.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TaskEffects } from './store/task.effect'
 import * as fromTask from './store/task.reducer';
 
@@ -30,6 +31,9 @@ import * as fromTask from './store/task.reducer';
     FormsModule,
     //NgRx
     StoreModule.forRoot({tasks: fromTask.reducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
     EffectsModule.forRoot([TaskEffects]),
     //Material
     MatCardModule,

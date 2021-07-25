@@ -17,6 +17,7 @@ export class TaskService {
     return of(this.tasks).pipe(delay(100));
   }
 
+  // Called by effects
   add(name: string): Observable<ITask[]> {
     console.log('taskservice::add ' + name);
 
@@ -28,14 +29,15 @@ export class TaskService {
     return of(this.tasks);
   }
 
-  delete(value: ITask): Observable<ITask[]> {
+  // Called by effects
+  delete(value: ITask): Observable<number> {
     console.log('taskservice::delete ' + value?.id + ' ' + value.name);
 
     this.tasks = this.tasks.filter((task) => {
       return task.id !== value.id;
     });
     console.log(this.tasks);
-    return of(this.tasks).pipe(delay(100));
+    return of(value.id).pipe(delay(100));
   }
 
   update(id: number, status: string): Observable<ITask[]> {
@@ -49,6 +51,7 @@ export class TaskService {
     });
 
     return of(this.tasks).pipe(delay(100));
+
   }
 
   private clone(arr) {

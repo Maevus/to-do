@@ -26,9 +26,10 @@ const taskReducer = createReducer<ITask[]>(
       ])
     ),
 
-    on(TaskServiceActions.deleteTaskSuccess, (state, action) => ([
-      ...action.payload,
-    ])),
+    on(TaskServiceActions.deleteTaskSuccess, (state, action) => (
+      // state less returned task where id is equal to returned value.
+      state.filter(task => task.id !== action.payload)
+    )),
 
     on(
       TaskServiceActions.addTask,
@@ -43,7 +44,7 @@ const taskReducer = createReducer<ITask[]>(
 
     on(
       TaskServiceActions.updateTask,
-      (state) => ([
+      (state) => ([ // just replacing state with state here. 
         ...state
       ])
     ),
