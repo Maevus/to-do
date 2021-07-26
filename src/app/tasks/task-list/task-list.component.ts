@@ -16,30 +16,29 @@ export class TaskListComponent implements OnInit {
 
   tasks$: Observable<ITask[]> = this.store.select((state) => state.tasks);
 
-  constructor(private store: Store<{ tasks: ITask[] }>) {}
+  constructor(private store: Store<{ tasks: ITask[] }>) { }
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' });
   }
 
-  completeTask(task): void {
-    this.updateTask(task.id, TASK_STATUS_COMPLETED);
+  completeTask(task: ITask): void {
+    this.updateTask(task, TASK_STATUS_COMPLETED)
   }
 
-  uncompleteTask(task): void {
-    this.updateTask(task.id, TASK_STATUS_TO_DO);
+  uncompleteTask(task: ITask): void {
+    this.updateTask(task, TASK_STATUS_TO_DO);
   }
 
   deleteTask(task): void {
     this.store.dispatch({ type: '[Task List Page] Delete Task', task: task });
   }
 
-  private updateTask(id: number, status: string): void {
-    console.log('update');
+  private updateTask(task, status): void {
     this.store.dispatch({
       type: '[Task List Page] Update Task',
-      id: id,
-      status: status,
+      task,
+      status
     });
   }
 

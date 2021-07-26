@@ -56,7 +56,7 @@ export class TaskEffects {
     this.actions$.pipe(
       ofType(taskActions.updateTask),
       mergeMap((action) =>
-        this.taskService.update(action.id, action.status).pipe(
+        this.taskService.update(action.task, action.status).pipe(
           map((tasks) => ({
             type: '[Tasks API] Update Task Success',
             payload: tasks,
