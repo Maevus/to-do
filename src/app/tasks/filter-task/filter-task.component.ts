@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TASK_STATUS_TO_DO, TASK_STATUS_COMPLETED } from '../../const';
 
-import * as selectors from './../../store/task.reducer';
+import * as selectors from '../../state/task.reducer';
 
 @Component({
   selector: 'app-filter-task',

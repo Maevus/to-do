@@ -21,8 +21,8 @@ import { SearchTaskComponent } from './tasks/search-task/search-task.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TaskEffects } from './store/task.effect'
-import * as fromTask from './store/task.reducer';
+import { TaskEffects } from './state/task.effect'
+import { tasksReducer} from './state/task.reducer';
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import * as fromTask from './store/task.reducer';
     BrowserAnimationsModule,
     FormsModule,
     //NgRx
-    StoreModule.forRoot({tasks: fromTask.reducer}),
+    StoreModule.forRoot({tasks: tasksReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

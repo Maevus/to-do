@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getCompletedTasks, getTasksState } from 'src/app/store/task.reducer';
+import {
+  selectCompletedTasks,
+  selectTasks,
+} from './../../state/tasks.selectors';
 
 @Component({
   selector: 'app-task-list',
@@ -13,7 +16,7 @@ import { getCompletedTasks, getTasksState } from 'src/app/store/task.reducer';
 export class TaskListComponent implements OnInit {
   @Input() searchTerm: string;
 
-  tasks$: Observable<ITask[]> = this.store.select(getTasksState);
+  tasks$: Observable<ITask[]> = this.store.pipe(select(selectTasks));
 
   constructor(private store: Store<any>) {}
 
@@ -39,28 +42,11 @@ export class TaskListComponent implements OnInit {
       task,
       status,
     });
+    this.filter()
   }
 
-  filter(task:ITask) {
-    console.log("filter")
-    this.store.select(getCompletedTasks)
+  filter() {
+    console.log('filter');
+    this.store.pipe(select(selectCompletedTasks));
   }
-
-  // search(searchTerm) {
-  //   // call selector to filter   tasks$
-  // }
-
-  // private getStatus(formValue: string): string {
-  //   switch (formValue) {
-  //     case 'completed': {
-  //       return TASK_STATUS_COMPLETED;
-  //     }
-  //     case 'to-do': {
-  //       return TASK_STATUS_TO_DO;
-  //     }
-  //     default: {
-  //       return null;
-  //     }
-  //   }
-  // }
 }

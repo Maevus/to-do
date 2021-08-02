@@ -4,9 +4,9 @@ import * as TaskServiceActions from './tasks.actions';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from '../const';
 import { identifierModuleUrl } from '@angular/compiler';
 
-const initialState: ITask[] = [];
+const initialState: ReadonlyArray<ITask> = [];
 
-const taskReducer = createReducer<ITask[]>(
+export const tasksReducer = createReducer(
   initialState,
   on(TaskServiceActions.loadTasks, (state): ITask[] => [...state]),
 
@@ -38,7 +38,3 @@ const taskReducer = createReducer<ITask[]>(
     return [...updatedState];
   })
 );
-
-export function reducer(state: any, action: any) {
-  return taskReducer(state, action);
-}
