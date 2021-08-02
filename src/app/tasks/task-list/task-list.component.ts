@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskService } from '../task.service';
 import { ITask } from 'src/app/models/task';
 import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as selectors from './../../store/task.selectors';
+import { getCompletedTasks, getTasksState } from 'src/app/store/task.reducer';
 
 @Component({
   selector: 'app-task-list',
@@ -14,16 +13,16 @@ import * as selectors from './../../store/task.selectors';
 export class TaskListComponent implements OnInit {
   @Input() searchTerm: string;
 
-  tasks$: Observable<ITask[]> = this.store.select((state) => state.tasks);
+  tasks$: Observable<ITask[]> = this.store.select(getTasksState);
 
-  constructor(private store: Store<{ tasks: ITask[] }>) { }
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' });
   }
 
   completeTask(task: ITask): void {
-    this.updateTask(task, TASK_STATUS_COMPLETED)
+    this.updateTask(task, TASK_STATUS_COMPLETED);
   }
 
   uncompleteTask(task: ITask): void {
@@ -38,16 +37,14 @@ export class TaskListComponent implements OnInit {
     this.store.dispatch({
       type: '[Task List Page] Update Task',
       task,
-      status
+      status,
     });
   }
 
-  // filter(filterBy) {
-  //   let status = this.getStatus(filterBy) 
-  //   console.log(status)
-
-  // }
-
+  filter(task:ITask) {
+    console.log("filter")
+    this.store.select(getCompletedTasks)
+  }
 
   // search(searchTerm) {
   //   // call selector to filter   tasks$
