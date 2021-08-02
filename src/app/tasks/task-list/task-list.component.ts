@@ -4,8 +4,9 @@ import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
-  selectCompletedTasks,
-  selectTasks,
+  selectCompletedTasks as selectCompleteTasks,
+  selectAllTasks,
+  selectToDoTasks,
 } from './../../state/tasks.selectors';
 
 @Component({
@@ -16,12 +17,16 @@ import {
 export class TaskListComponent implements OnInit {
   @Input() searchTerm: string;
 
-  tasks$: Observable<ITask[]> = this.store.pipe(select(selectTasks));
+  visibleTasks$: Observable<ITask[]>  
+  allTasks$: Observable<ITask[]> = this.store.pipe(select(selectAllTasks));
+  completeTasks$: Observable<ITask[]> = this.store.pipe(select(selectCompleteTasks));
+  toDoTasks$: Observable<ITask[]> = this.store.pipe(select(selectToDoTasks));
 
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' });
+    this.visibleTasks$ = this.allTasks$
   }
 
   completeTask(task: ITask): void {
@@ -47,6 +52,6 @@ export class TaskListComponent implements OnInit {
 
   filter() {
     console.log('filter');
-    this.store.pipe(select(selectCompletedTasks));
+    this.store.pipe(select(selectCompleteTasks));
   }
 }
