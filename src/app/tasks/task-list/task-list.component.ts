@@ -14,9 +14,6 @@ import { _ROOT_STORE_GUARD } from '@ngrx/store/src/tokens';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  searchTerm: string;
-  @Input() filterBy: string;
-
   visibleTasks$: Observable<ITask[]> 
   
   constructor(private store: Store<any>) {}

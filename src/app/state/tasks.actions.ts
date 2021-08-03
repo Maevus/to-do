@@ -33,7 +33,14 @@ export const updateTaskSuccess = createAction(
   '[Tasks API] Update Task Success',
   props<{ payload: {task: ITask}}>()
 );
+
+
+
 export const updateFilter = createAction(
   '[Tasks Home Page] UpdateFilter',
   props<{ filter: string}>()
+)
+export const searchTerm = createAction(
+  '[Search Task Page] Search Tasks',
+  props<{ searchTerm: string}>()
 )

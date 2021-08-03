@@ -23,6 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TaskEffects } from './state/task.effect'
 import { tasksReducer} from './state/task.reducer';
 import { filterReducer} from './state/filter.reducer';
+import { searchReducer} from './state/search.reducer';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { filterReducer} from './state/filter.reducer';
     BrowserAnimationsModule,
     FormsModule,
     //NgRx
-    StoreModule.forRoot({tasks: tasksReducer, filterBy: filterReducer}),
+    StoreModule.forRoot({tasks: tasksReducer, filterBy: filterReducer, searchBy: searchReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

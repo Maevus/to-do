@@ -15,6 +15,7 @@ export class SearchTaskComponent implements OnInit {
   }
 
   search(searchTerm) {
+    console.log(searchTerm)
     this.store.dispatch({type:'[Search Task Page] Search Tasks', search: searchTerm })
   }
 
