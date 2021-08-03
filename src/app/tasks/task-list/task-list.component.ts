@@ -4,7 +4,7 @@ import { TASK_STATUS_COMPLETED, TASK_STATUS_TO_DO } from './../../const';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscriber } from 'rxjs';
 import {
-  selectFilteredTasks, selectSearchedTasks,
+  selectFilteredSearchedTasks,
 } from './../../state/tasks.selectors';
 import { _ROOT_STORE_GUARD } from '@ngrx/store/src/tokens';
 
@@ -15,14 +15,12 @@ import { _ROOT_STORE_GUARD } from '@ngrx/store/src/tokens';
 })
 export class TaskListComponent implements OnInit {
   visibleTasks$: Observable<ITask[]> 
-  searchedTasks$: Observable<ITask[]> 
   
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' })
-    this.visibleTasks$ = this.store.pipe(select(selectFilteredTasks));
-    this.searchedTasks$ = this.store.pipe(select(selectSearchedTasks));
+    this.visibleTasks$ = this.store.pipe(select(selectFilteredSearchedTasks));
   }
 
   completeTask(task: ITask): void {
