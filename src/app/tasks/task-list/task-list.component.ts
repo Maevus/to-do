@@ -19,14 +19,7 @@ export class TaskListComponent implements OnInit {
 
   visibleTasks$: Observable<ITask[]> 
   
-  allTasks$: Observable<ITask[]> 
-  completeTasks$: Observable<ITask[]> 
-  toDoTasks$: Observable<ITask[]>
-
-  constructor(private store: Store<any>) {
-
-    
-  }
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch({ type: '[Task List Page] Load Tasks' })
@@ -52,54 +45,5 @@ export class TaskListComponent implements OnInit {
       status,
     });
   }
-
-  ngOnChanges() {
-    console.log('ngOnChg:: ', this.filterBy);
-    this.visibleTasks$ = this.store.pipe(select(selectFilteredTasks));
-    // this.setVisibleTasksBasedOnFilter(this.filterBy)
-  }
-
-  filter(formValue) {
-    this.setVisibleTasksBasedOnFilter(formValue);
-    console.log(formValue);
-  }
-
-  private setVisibleTasksBasedOnFilter(filter: string): void {
-    console.log("filtering..")
-    switch (filter) {
-      case 'completed': {
-        // show completed tasks $
-        this.visibleTasks$ = this.completeTasks$
-      }
-      case 'to-do': {
-        // show todo tasks $
-        this.visibleTasks$ = this.toDoTasks$
-
-      }
-      default: {
-        // show all tasks $
-        this.visibleTasks$ = this.allTasks$
-
-      }
-    }
-  }
 }
 
-//   ngOnChanges() {
-//     // activated whenever a component gets a new value
-//     if (this.sessions) {
-//         this.filterSessions(this.filterBy);
-//         this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc);
-//     }
-// }
-
-// // very efficient code, nothing changes unless theres an action.
-// filterSessions(filter: string) {
-//     if (filter === 'all') {
-//         this.visibleSessions = this.sessions.slice(0) // creates a complete duplicate of array with all the same elements.
-//     } else {
-//         this.visibleSessions = this.sessions.filter(session => {
-//             return session.level.toLocaleLowerCase() === filter;
-//         })
-//     }
-// }
