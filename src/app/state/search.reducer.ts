@@ -5,9 +5,9 @@ const initialState: Readonly<string> = '';
 
 export const searchReducer = createReducer(
   initialState,
-  on(TaskServiceActions.searchTerm, (state, action): string => {
-      console.log("reducer", state, " ", action.searchTerm)
-      state = action.searchTerm
+  on(TaskServiceActions.search, (state, action): string => {
+      console.log("reducer", state, " ", action.searchBy)
+      state = action.searchBy
       return state
     })
 );

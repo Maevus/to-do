@@ -40,7 +40,7 @@ export const updateFilter = createAction(
   '[Tasks Home Page] UpdateFilter',
   props<{ filter: string}>()
 )
-export const searchTerm = createAction(
+export const search = createAction(
   '[Search Task Page] Search Tasks',
-  props<{ searchTerm: string}>()
+  props<{ searchBy: string}>()
 )
