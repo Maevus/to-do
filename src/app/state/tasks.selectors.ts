@@ -7,16 +7,19 @@ export const selectAllTasks = createSelector(
     (tasks: Array<ITask>) => tasks
 )
 
-export const selectCompletedTasks = createSelector(
-    selectAllTasks,
-    (tasks: Array<ITask>) => {
-        return tasks.filter(task => task.status === "complete")
-    }
+export const selectFilterBy = createSelector(
+    (state: AppState) => state.filterBy,
+    (filter: string) => filter
 )
 
-export const selectToDoTasks = createSelector(
+export const selectFilteredTasks = createSelector(
     selectAllTasks,
-    (tasks: Array<ITask>) => {
-        return tasks.filter(task => task.status === "to do")
+    selectFilterBy,
+    (tasks: Array<ITask>, filter: string) => {
+        console.log("filter by selector", filter)
+        if (!filter || filter === 'all') {
+            return [...tasks]
+        }
+        return tasks.filter(task => task.status === filter)
     }
 )

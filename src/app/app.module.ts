@@ -14,7 +14,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
 import { AddTaskComponent } from './tasks/add-task/add-task.component';
-import { FilterTaskComponent } from './tasks/filter-task/filter-task.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { SearchTaskComponent } from './tasks/search-task/search-task.component';
@@ -23,6 +22,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TaskEffects } from './state/task.effect'
 import { tasksReducer} from './state/task.reducer';
+import { filterReducer} from './state/filter.reducer';
+
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { tasksReducer} from './state/task.reducer';
     BrowserAnimationsModule,
     FormsModule,
     //NgRx
-    StoreModule.forRoot({tasks: tasksReducer}),
+    StoreModule.forRoot({tasks: tasksReducer, filterBy: filterReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
@@ -47,10 +48,8 @@ import { tasksReducer} from './state/task.reducer';
     AppComponent,
     TaskListComponent,
     AddTaskComponent,
-    FilterTaskComponent,
     HomeComponent,
     SearchTaskComponent,
-
   ],
   providers: [
     TaskService

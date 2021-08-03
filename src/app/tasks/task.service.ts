@@ -75,16 +75,16 @@ const TASKS: ITask[] = [
   {
     id: 1,
     name: 'things to do',
-    status: 'to do',
+    status: 'to-do',
   },
   {
     id: 2,
     name: 'more things to do',
-    status: 'complete',
+    status: 'completed',
   },
   {
     id: 3,
     name: 'morer things to do',
-    status: 'to do',
+    status: 'to-do',
   },
 ];
